@@ -161,9 +161,6 @@ let myTDMBSearch = (function () {
                 imageURL = data.images.secure_base_url;
                 imageSizes = data.images.poster_sizes;
 
-                console.log(imageURL);
-                console.log(imageSizes);
-
                 localStorage.setItem(imageURLKey, JSON.stringify(imageURL));
                 localStorage.setItem(imageSizesKey, JSON.stringify(imageSizes));
 
@@ -217,8 +214,6 @@ let myTDMBSearch = (function () {
         mode = JSON.parse(localStorage.getItem(modeKey));
 
         let url = `${movieDataBaseURL}search/${mode}?api_key=${APIKEY}&query=${searchString}`;
-
-        console.log("url: ", url);
 
         fetch(url)
             .then((response) => response.json())
@@ -278,7 +273,6 @@ let myTDMBSearch = (function () {
     function createMovieCard(results) {
 
         mode = JSON.parse(localStorage.getItem(modeKey));
-        console.log("createCards_modeKey -", mode);
 
         let documentFragment = new DocumentFragment(); // use a documentFragment for performance
 
@@ -375,14 +369,11 @@ let myTDMBSearch = (function () {
 
         let url = `${movieDataBaseURL}${mode}/${movieId}/recommendations?api_key=${APIKEY}&language=en-US&page=1`;
 
-        console.log(url);
-
         fetch(url)
             .then((response) => response.json())
             .then(function (data) {
                 //get and show 
-                console.log('recommendation: ', data);
-
+                
                 if (data.total_results > 0) {
                     showMovieRecommendations(data);
                 } else {
@@ -487,29 +478,30 @@ let myTDMBSearch = (function () {
         mode = JSON.parse(localStorage.getItem(modeKey));
 
         if (mode == "movie") {
-            console.log(mode);
             msg.innerHTML = "Movie Recommendations";
         } else {
             msg.innerHTML = "Television Recommendations";
         }
 
         header.insertBefore(msg, searchControls);
+                
+        if (pageActive == "schInitial") {
+            let attrib = document.querySelector(".attribution");
+            let linkTmdb = document.createElement("a");
 
-        let attrib = document.querySelector(".attribution");
-        let linkTmdb = document.createElement("a");
+            linkTmdb.setAttribute("href", "https://www.themoviedb.org/");
 
-        linkTmdb.setAttribute("href", "https://www.themoviedb.org/");
+            let logoTmdb = document.createElement("img");
+            logoTmdb.setAttribute("src", "img/tmdb_logo2.png")
+            logoTmdb.setAttribute("alt", "The Movie DB");
+            logoTmdb.setAttribute("width", "234"); //468/161
+            logoTmdb.setAttribute("height", "80");
 
-        let logoTmdb = document.createElement("img");
-        logoTmdb.setAttribute("src", "img/tmdb_logo2.png")
-        logoTmdb.setAttribute("alt", "The Movie DB");
-        logoTmdb.setAttribute("width", "234"); //468/161
-        logoTmdb.setAttribute("height", "80");
+            linkTmdb.appendChild(logoTmdb);
 
-        linkTmdb.appendChild(logoTmdb);
-
-        attrib.appendChild(linkTmdb);
-
+            attrib.appendChild(linkTmdb);
+        }
+        
         let backButton = document.querySelector(".backButtonDiv");
         if (backButton.classList.contains("active")) {
             backButton.classList.remove("active");
