@@ -1,0 +1,343 @@
+@import url('https://fonts.googleapis.com/css?family=Alegreya|Roboto');
+
+:root {
+    --dk-blue: #002e66;
+    --dkr-blue: #001733;
+    --blue: #6495ed;
+    --grey: #e0e0e0;
+    --dk-grey: #404040;
+    --black: #000000;
+    --white: #ffffff;
+    --FS1: 5.063rem;
+    --FS2: 3.375rem;
+    --FS3: 2.25rem;
+    --FS4: 1.5rem;
+    --FS5: 1rem;
+    --FSSmall: 0.667rem;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: var(--FS5);
+    line-height: 1.5rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+k5 {
+    font-family: Alegreya, Cambria, "Times New Roman", serif;
+}
+
+h1 {
+    font-size: var(--FS1);
+}
+
+h2 {
+    font-size: var(--FS2);
+}
+
+h3 {
+    font-size: var(--FS3);
+    line-height: 2.5rem;
+}
+
+h4 {
+    font-size: var(--FS4);
+    line-height: 2rem;
+}
+
+h5 {
+    font-size: var(--FS5);
+}
+
+header .searchControls,
+    header .small{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 1rem;
+    background-color: var(--grey);
+    border-bottom: 1px solid var(--black);
+}
+
+#back-button {
+    order: 0;
+    padding-top: 0.5rem;
+}
+
+#search-input {
+    order: 1;
+    width: 40%;
+    height: 2.5rem;
+    text-align: center;
+    font-size: var(--FS4);
+    line-height: 1.8rem;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    transition: width 1s easy-in;
+}
+
+#search-input:hover {
+    width: 60%;
+}
+
+header .searchButtonDiv {
+    order: 2;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    background-color: var(--white);
+    height: 2.5rem;
+/*    padding: 5px 5px 0 5px;*/
+}
+
+header .ModeButtonDiv {
+    order: 3;
+    padding-top: 0.2rem;
+    padding-left: 1rem;
+}
+
+header .searchButtonDiv #search-button {
+    height: 2rem;
+    width: 2rem;
+    cursor: pointer;
+    background-color: white;
+    padding: 5px 5px 0 5px;
+}
+
+header h3 {
+    color: var(--white);
+    background-color: var(--blue);
+    text-align: center;
+    text-shadow: 4px 4px 2px var(--dk-grey);
+    height: 20rem;
+    padding-top: 10rem;
+}
+
+/* div search initial */
+.initial {
+    color: var(--white);
+    background-color: var(--blue);
+    width: 100%;
+    height: 10rem;
+    border: 0;
+}
+
+.active {
+    display: block;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+}
+
+.modal {
+    position: fixed;
+    width: 500px;
+    height: 280px;
+    z-index: 200;
+    top: calc((100% - 280px)/2);
+    left: calc((100% - 500px)/2);
+    line-height: 1.5;
+    color: #555;
+    background-color: #eee;
+    transition: transform 1s ease-out;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.off {
+    transform: translateY(-400%);
+}
+
+.on {
+    transform: translateY(0);
+}
+
+.cancelButton,
+.saveButton {
+    width: 120px;
+    position: absolute;
+    border: none;
+    background-color: var(--blue);
+    color: white;
+    cursor: pointer;
+    padding: 0.25rem 2rem;
+    font-size: 1rem;
+}
+
+.saveButton {
+    bottom: 1rem;
+    right: 4rem;
+}
+
+.cancelButton {
+    bottom: 1rem;
+    left: 4rem;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: var(--blue);
+    color: white;
+    text-align: center;
+}
+
+.modal-radio {
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.modal-radio label{
+    margin-right: 5rem;
+}
+
+.iconic-property-stroke,
+.iconic-property-fill {
+    fill: #345;
+    stroke: #269;
+}
+
+/*Add this class to the recommend and search results content sections in HTML*/
+.flex-container {
+    display: flex;
+    flex-wrap: wrap
+}
+
+.movieCard {
+    width: 50rem;
+    height: auto;
+    margin: 1rem auto;
+    padding-right: 1rem;
+    border: 2px solid var(--dkr-blue);
+    background-color: var(--dk-blue);
+    color: white;
+    line-height: 1.5rem;
+    transform: scale(1);
+    transition: transform 1s easy-in;
+}
+
+.movieCard:hover {
+    transform: scale(1.2);
+    box-shadow: 10px 10px 5px var(--dk-grey);
+}
+/*.movieCard.animate {*/
+.movieCard:before{
+	transform: translateY(200px);
+	animation: moveUp 0.65s ease forwards;
+}
+@keyframes moveUp {
+	0% { }
+	100% { transform: translateY(0); opacity: 1; }
+}
+
+.movieCard p {
+    text-align: center;
+}
+
+.movieCard p:first-of-type {
+    font-size: var(--FS4);
+    font-weight: 900;
+    padding-top: 2rem;
+}
+
+.movieCard p:nth-of-type(4) {
+    line-height: 1rem;
+}
+
+.imageSection {
+    float: left;
+    width: 12rem;
+    height: 17rem;
+    margin-right: 1rem overflow: hidden;
+}
+
+/*select only the images that are direct descendants of .imageSection*/
+.imageSection > img {
+    height: 17rem;
+    width: 185px;
+    margin-right: 1rem;
+}
+
+#search-results {
+    color: var(--white);
+    background-color: var(--blue);
+    padding: 2rem;
+}
+
+#search-results .title {
+    text-align: center;
+    text-shadow: 4px 4px 2px var(--dk-grey);
+}
+
+#recommend-results {
+   color: var(--white);
+    background-color: var(--blue);
+    padding: 1.5rem;
+}
+
+#recommend-results .title{
+    text-align: center;
+    text-shadow: 4px 4px 2px var(--dk-grey);
+}
+.attribution {
+    background-color: var(--blue);
+    color: var(--white);
+    height: 34rem;
+}
+.attribution a img {
+    margin-left: 40%;
+    margin-top: 20rem;
+}
+/*************************************************
+            MEDIA QUERIES for layout
+*************************************************/
+@media (max-width: 599px){
+    .movieCard {
+        width: 95%;
+        margin: 0.5rem;
+        padding-right: 1rem;
+    }
+    .movieCard p:first-of-type {
+        font-size: var(--FS3);
+        line-height: 2rem;
+    }
+}
+@media (min-width: 600px) and (max-width: 1059px) {
+    .movieCard {
+        width: 95%;
+        margin: 1rem;
+        padding-right: 1rem;
+    }
+}
+@media (min-width: 1060px){
+    .movieCard {
+        width: 45%;
+        /*height: auto;*/
+        margin: 1rem 1.5rem;
+        padding-right: 1rem;
+        justify-content: center;
+    }
+}
