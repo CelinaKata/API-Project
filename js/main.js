@@ -323,7 +323,7 @@ let myTDMBSearch = (function () {
                 image.alt = `${movie.title}`
             } else {
                 //mostrar quadrado imagem nao disponivel
-                image.src = '../img/no-img-available.jpg';
+                image.src = 'img/no-img-available.jpg';
                 image.alt = "No image available";
                 //image.alt = `${movie.title} - Image not available`;
             }
